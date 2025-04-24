@@ -1,5 +1,5 @@
-from window import Window
-from maze import Maze # Import Maze
+from .window import Window # Use relative import
+from .maze import Maze # Use relative import
 
 def main():
     num_rows = 12

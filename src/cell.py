@@ -1,6 +1,6 @@
-from point import Point
-from line import Line
-from window import Window
+from .point import Point
+from .line import Line
+from .window import Window
 
 class Cell:
     def __init__(self, win=None):

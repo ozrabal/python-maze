@@ -1,5 +1,5 @@
 import time
-from cell import Cell
+from .cell import Cell
 
 class Maze:
     def __init__(

@@ -1,5 +1,5 @@
 from tkinter import Tk, BOTH, Canvas
-from line import Line
+from .line import Line
 
 class Window:
     def __init__(self, width, height):
