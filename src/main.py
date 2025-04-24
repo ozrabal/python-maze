@@ -1,56 +1,17 @@
 from window import Window
-from point import Point
-from line import Line
-from cell import Cell # Import Cell
+from maze import Maze # Import Maze
 
 def main():
-    win = Window(800, 600)
- 
-    # Create a few points
-    p1 = Point(100, 100)
-    p2 = Point(200, 200)
-    p3 = Point(300, 100)
-    p4 = Point(100, 300)
-    p5 = Point(400, 400)
-    
-    # Create and draw lines using the points
-    line1 = Line(p1, p2)
-    line2 = Line(p2, p3)
-    line3 = Line(p3, p1)
-    line4 = Line(p2, p5)
-    line5 = Line(p4, p5)
-    
-    # Draw lines with different colors
-    win.draw_line(line1, "yellow")
-    win.draw_line(line2, "blue")
-    win.draw_line(line3, "green")
-    win.draw_line(line4, "black")
-    win.draw_line(line5, "red")
+    num_rows = 12
+    num_cols = 16
+    margin = 50
+    screen_x = 800
+    screen_y = 600
+    cell_size_x = (screen_x - 2 * margin) / num_cols
+    cell_size_y = (screen_y - 2 * margin) / num_rows
+    win = Window(screen_x, screen_y)
 
-    # Create cells
-    c1 = Cell(win)
-    c1.has_right_wall = False
-    c1.draw(50, 50, 100, 100)
-
-    c2 = Cell(win)
-    c2.has_left_wall = False
-    c2.has_bottom_wall = False
-    c2.draw(100, 50, 150, 100)
-
-    c1.draw_move(c2)
-
-    c3 = Cell(win)
-    c3.has_top_wall = False
-    c3.has_right_wall = False
-    c3.draw(100, 100, 150, 150)
-
-    c2.draw_move(c3)
-
-    c4 = Cell(win)
-    c4.has_left_wall = False
-    c4.draw(150, 100, 200, 150)
-
-    c3.draw_move(c4, True)
+    maze = Maze(margin, margin, num_rows, num_cols, cell_size_x, cell_size_y, win)
 
     win.wait_for_close()
 
