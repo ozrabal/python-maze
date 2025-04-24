@@ -1,6 +1,7 @@
 from window import Window
 from point import Point
 from line import Line
+from cell import Cell # Import Cell
 
 def main():
     win = Window(800, 600)
@@ -25,6 +26,30 @@ def main():
     win.draw_line(line3, "green")
     win.draw_line(line4, "black")
     win.draw_line(line5, "red")
+
+    # Create cells
+    cell1 = Cell(win)
+    cell1.draw(50, 50, 100, 100) # Draw a standard cell
+
+    cell2 = Cell(win)
+    cell2.has_left_wall = False
+    cell2.draw(150, 50, 200, 100) # Draw cell with no left wall
+
+    cell3 = Cell(win)
+    cell3.has_top_wall = False
+    cell3.has_right_wall = False
+    cell3.draw(50, 150, 100, 200) # Draw cell with no top or right wall
+
+    cell4 = Cell(win)
+    cell4.has_bottom_wall = False
+    cell4.draw(150, 150, 200, 200) # Draw cell with no bottom wall
+
+    cell5 = Cell(win)
+    cell5.has_left_wall = False
+    cell5.has_right_wall = False
+    cell5.has_top_wall = False
+    cell5.has_bottom_wall = False
+    cell5.draw(250, 100, 300, 150) # Draw cell with no walls
 
     win.wait_for_close()
 
