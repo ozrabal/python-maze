@@ -28,28 +28,29 @@ def main():
     win.draw_line(line5, "red")
 
     # Create cells
-    cell1 = Cell(win)
-    cell1.draw(50, 50, 100, 100) # Draw a standard cell
+    c1 = Cell(win)
+    c1.has_right_wall = False
+    c1.draw(50, 50, 100, 100)
 
-    cell2 = Cell(win)
-    cell2.has_left_wall = False
-    cell2.draw(150, 50, 200, 100) # Draw cell with no left wall
+    c2 = Cell(win)
+    c2.has_left_wall = False
+    c2.has_bottom_wall = False
+    c2.draw(100, 50, 150, 100)
 
-    cell3 = Cell(win)
-    cell3.has_top_wall = False
-    cell3.has_right_wall = False
-    cell3.draw(50, 150, 100, 200) # Draw cell with no top or right wall
+    c1.draw_move(c2)
 
-    cell4 = Cell(win)
-    cell4.has_bottom_wall = False
-    cell4.draw(150, 150, 200, 200) # Draw cell with no bottom wall
+    c3 = Cell(win)
+    c3.has_top_wall = False
+    c3.has_right_wall = False
+    c3.draw(100, 100, 150, 150)
 
-    cell5 = Cell(win)
-    cell5.has_left_wall = False
-    cell5.has_right_wall = False
-    cell5.has_top_wall = False
-    cell5.has_bottom_wall = False
-    cell5.draw(250, 100, 300, 150) # Draw cell with no walls
+    c2.draw_move(c3)
+
+    c4 = Cell(win)
+    c4.has_left_wall = False
+    c4.draw(150, 100, 200, 150)
+
+    c3.draw_move(c4, True)
 
     win.wait_for_close()
 
