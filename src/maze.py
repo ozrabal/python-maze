@@ -119,3 +119,47 @@ class Maze:
         for col in self._cells:
             for cell in col:
                 cell.visited = False
+
+    def solve(self):
+        return self._solve_r(0, 0)
+
+    def _solve_r(self, i, j):
+        self._animate()
+        current_cell = self._cells[i][j]
+        current_cell.visited = True
+
+        # Check if we reached the end cell
+        if i == self._num_cols - 1 and j == self._num_rows - 1:
+            return True
+
+        # Directions: (di, dj) -> (right, left, down, up)
+        directions = [(1, 0), (-1, 0), (0, 1), (0, -1)]
+
+        for di, dj in directions:
+            ni, nj = i + di, j + dj
+
+            # Check bounds
+            if 0 <= ni < self._num_cols and 0 <= nj < self._num_rows:
+                next_cell = self._cells[ni][nj]
+                
+                # Check if not visited and no wall between cells
+                can_move = False
+                if di == 1 and not current_cell.has_right_wall and not next_cell.has_left_wall: # Moving right
+                    can_move = True
+                elif di == -1 and not current_cell.has_left_wall and not next_cell.has_right_wall: # Moving left
+                    can_move = True
+                elif dj == 1 and not current_cell.has_bottom_wall and not next_cell.has_top_wall: # Moving down
+                    can_move = True
+                elif dj == -1 and not current_cell.has_top_wall and not next_cell.has_bottom_wall: # Moving up
+                    can_move = True
+
+                if can_move and not next_cell.visited:
+                    current_cell.draw_move(next_cell)
+                    if self._solve_r(ni, nj):
+                        return True
+                    else:
+                        # Undo the move visually
+                        current_cell.draw_move(next_cell, undo=True)
+
+        # If none of the directions lead to the solution
+        return False
